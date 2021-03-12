@@ -19,10 +19,11 @@ Connected two switches with using router
 
 First one with gigabitEthernet 0/0 port and second one with gigabitEthernet 0/1 port
 
-added password to enable mode as well as user of Router(with CLI)
+added name(as Router1)  password to enable mode as well as user of Router(with CLI)
     
       enable secret cisco
       conf t
+      hostname Router1
       line console 0
       password cisco
       login
@@ -58,4 +59,47 @@ Configuring telnet, only 5 end devices can connect each time and added password
 Opened password-encryption service
     
     service password-encryption
+    
+Switch Configuration, new name added to first switch(as SW1)
+
+    enable
+    conf t
+    hostname SW1
+    
+Added password to enable mode and user
+    
+    enable secret cisco
+    line console 0
+    password cisco
+    login
+    
+Added telnet
+    
+    line vty 0 4
+    password cisco
+    login
+
+Vlan configuration (since switch is layer2 cant add ip so need to do vlan config)
+
+    interface vlan 1
+    ip address 192.168.1.100 255.255.255.0
+    
+Added gateway to vlan
+
+    ip default-gateway 192.168.1.10
+    
+SSH Configuration to Router(Router1)
+    
+    ip domain name lab.lab
+    crypto key generate rsa
+    username admin secret cisco // added to db as user
+    username ccna secret ccna  // added another user
+    ip ssh version 2
+    line vty 0 4
+    transport input ssh
+    login local
+    
+for login from end device
+    
+    ssh -l admin 192.168.1.10 
     
