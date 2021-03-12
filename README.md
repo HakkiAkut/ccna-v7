@@ -13,6 +13,8 @@ First, one switch(192.168.1.X) connected with 3 computer
 
 Second, one switch(192.168.2.X) connected with 3 laptop
 
+Added ip and gateways to the end devices.
+
 Connected two switches with using router
 
 First one with gigabitEthernet 0/0 port and second one with gigabitEthernet 0/1 port
@@ -46,3 +48,14 @@ opened port of gigabitEthernet 0/1
     
     int gigabitEthernet 0/1
     no shutdown
+    
+Configuring telnet, only 5 end devices can connect each time and added password
+
+    line vty 0 4
+    password cisco
+    login
+
+Opened password-encryption service
+    
+    service password-encryption
+    
